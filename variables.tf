@@ -10,7 +10,7 @@ variable "region" {
 }
 
 variable "prefix" {
-  default = "bm-alb"
+  default = "fgt-demoalb"
 }
 
 variable "net_names" {
