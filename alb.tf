@@ -37,9 +37,17 @@ resource "google_compute_url_map" "alb" {
   default_service = google_compute_backend_service.alb.id
 }
 
+resource "google_compute_url_map" "redirect" {
+  name = "${var.prefix}-alb-redir-to-https"
+  default_url_redirect {
+    https_redirect = true
+    strip_query = false
+  }
+}
+
 resource "google_compute_target_http_proxy" "alb" {
   name    = "${var.prefix}-alb-proxy"
-  url_map = google_compute_url_map.alb.id
+  url_map = google_compute_url_map.redirect.id
 }
 
 resource "google_compute_target_https_proxy" "alb" {

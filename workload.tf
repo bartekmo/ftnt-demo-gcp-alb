@@ -2,6 +2,7 @@ resource "google_compute_address" "srv" {
   name = "${var.prefix}-srv-ip"
   region = var.region
   subnetwork = google_compute_subnetwork.nets[var.net_names[1]].id
+  address_type = "INTERNAL"
 }
 
 resource "google_compute_instance" "srv" {
